@@ -1,0 +1,46 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="formGroupAdd" (ngSubmit)="addOt()" >
+              <input type="hidden"  name="payroll" formControlName="payroll" >
+              <div class="card-body">
+                <!-- Date -->
+                <div class="form-group">
+                  <label>Date:</label>
+                    <input class="form-control" matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="otdate" autocomplete="off" >
+                    <mat-datepicker #picker></mat-datepicker>
+                 
+                </div>
+                <!--/ Date -->
+                <!---เวร--->
+                <div class="form-group">
+                  <label for="exampleSelectRounded0">เวร</label>
+                  <select name="cycle" formControlName="cycle"  class="form-control" id="exampleSelectRounded0" >
+                    <option value="1">เช้า</option>
+                    <option value="2">บ่าย</option>
+                    <option value="3">ดึก</option>
+                  </select>
+                </div>
+                <!---/เวร--->
+               
+              </div>
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">บันทึก</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+    </div>
+</div>
+
+
+
