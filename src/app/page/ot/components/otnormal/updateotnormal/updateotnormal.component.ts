@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 
 import { OtService } from 'src/app/service/ot.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -15,10 +15,10 @@ import { CommonService} from 'src/app/service/common.service';
 export class UpdateotnormalComponent implements OnInit {
 
   private result: any;
-  payroll = '';
   otdate: any;
   otForm: any;
   formGroupAdd: FormGroup;
+  id: any;
 
   constructor(
     private rout: ActivatedRoute,
@@ -33,12 +33,30 @@ export class UpdateotnormalComponent implements OnInit {
       otdate: new FormControl(''),
       cycle: new FormControl(''),
     });
-    this.payroll = this.auth.getPayroll();
-    this.formGroupAdd.controls['payroll'].setValue(this.payroll);
+    this.rout.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
+    
+    this.getOtnormalById(this.id);
+  }
+
+  async getOtnormalById(id: any){
+    await this.otservice.getOtnormalById(id).then((res: any)=>{
+      console.log(res);
+      if(res.ok == true)
+      {
+        this.formGroupAdd.controls['payroll'].setValue(res.rs[0].payroll);
+        this.formGroupAdd.controls['otdate'].setValue(res.rs[0].otdate);
+        this.formGroupAdd.controls['cycle'].setValue(res.rs[0].cycle);
+      }else{
+
+      }
+
+    });
   }
 
   async updateOt() {
-    let id = 25;
+    let id = this.id;
     let otdate = this.formGroupAdd.get('otdate').value;
     this.formGroupAdd.controls['otdate'].setValue(this.common.convertDate(otdate));
     this.otForm = this.formGroupAdd.getRawValue();
@@ -59,5 +77,7 @@ export class UpdateotnormalComponent implements OnInit {
       Swal.fire('', 'เกิดข้อผิดพลาด ไม่สามารถทำรายการได้. ' + err.error, 'error');
     });
   }
+
+
 
 }

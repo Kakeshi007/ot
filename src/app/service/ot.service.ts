@@ -50,4 +50,18 @@ export class OtService {
       return res;
     });
   }
+
+  getOtnormalById(id: any)
+  {
+    return this.api.GetOtnormalById(id).toPromise().then((res: any)=>{
+      return res;
+    });
+  }
+
+  getOtnormalAll()
+  {
+    return this.api.GetOtnarmalAll().toPromise().then((res: any)=>{
+      return res;
+    });
+  }
 }

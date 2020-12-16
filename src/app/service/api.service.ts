@@ -34,5 +34,15 @@ export class ApiService {
       return this.http.delete(url + '/otnormal/'+id);
     }
 
+    GetOtnormalById(id: any)
+    {
+      return this.http.get(url + '/otnormal/' + id);
+    }
+
+    GetOtnarmalAll()
+    {
+      return this.http.get(url + '/otnormal/');
+    }
+
   
 }
