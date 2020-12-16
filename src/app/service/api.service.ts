@@ -21,17 +21,17 @@ export class ApiService {
 
     AddOt(body: any)
     {
-      return this.http.post(url + '/ot', body);
+      return this.http.post(url + '/otnormal', body);
     }
 
     UpdateOt(body: any, id: any)
     {
-      return this.http.put(url + '/ot/'+ id, body);
+      return this.http.put(url + '/otnormal/'+ id, body);
     }
 
     DeleteOt(id: any)
     {
-      return this.http.delete(url + '/ot/'+id);
+      return this.http.delete(url + '/otnormal/'+id);
     }
 
   
