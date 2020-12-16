@@ -12,6 +12,8 @@ import { CommonService} from 'src/app/service/common.service';
 })
 export class OtsummaryComponent implements OnInit {
 
+  dayOfMont: any;
+
   constructor(
     private rout: ActivatedRoute,
     private otservice: OtService,
@@ -20,6 +22,8 @@ export class OtsummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOtnormalAll();
+    console.log('day of mont', this.getDayOfMonth(11, 2020));
+    this.dayOfMont = this.getDayOfMonth(12, 2020);
   }
 
   async getOtnormalAll(){
@@ -33,5 +37,10 @@ export class OtsummaryComponent implements OnInit {
       }
 
     });
+  }
+
+  getDayOfMonth(month: any, year: any)
+  {
+    return new Date(year, month, 0).getDate();
   }
 }
