@@ -1,8 +1,36 @@
-<table>
+<table class="">
     <thead>
         <tr>
             <th>วันที่</th>
-            <th *ngFor="let days of dayOfMont; let day = index">{{day}}</th>
+            <th *ngFor="let day of days; ">{{day}}</th>
         </tr>
     </thead>
 </table>
+
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Bordered Table</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th style="width: 10px">#</th>
+            <th>Task</th>
+            <th *ngFor="let day of days; ">{{day}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>เวรเช้า</td>
+            <td *ngFor="let day of days; ">{{day}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+</div>
+  <!-- /.card -->

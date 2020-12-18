@@ -12,7 +12,7 @@ import { CommonService} from 'src/app/service/common.service';
 })
 export class OtsummaryComponent implements OnInit {
 
-  dayOfMont: any;
+  days = new Array();
 
   constructor(
     private rout: ActivatedRoute,
@@ -22,13 +22,12 @@ export class OtsummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOtnormalAll();
-    console.log('day of mont', this.getDayOfMonth(11, 2020));
-    this.dayOfMont = this.getDayOfMonth(12, 2020);
+    this.days = this.getDayOfMonth(12, 2020);
   }
 
   async getOtnormalAll(){
     await this.otservice.getOtnormalAll().then((res: any)=>{
-      console.log(res);
+    
       if(res.ok == true)
       {
         
@@ -41,6 +40,13 @@ export class OtsummaryComponent implements OnInit {
 
   getDayOfMonth(month: any, year: any)
   {
-    return new Date(year, month, 0).getDate();
+    let numberOfDay = new Date(year, month, 0).getDate();
+    let dayReturn = new Array();
+    for(let i = 1; i< numberOfDay; i++)
+    {
+      dayReturn.push(i);
+    }
+   
+    return dayReturn;
   }
 }
