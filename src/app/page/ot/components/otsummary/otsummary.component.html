@@ -17,7 +17,11 @@
           <tr>
             <td>1.</td>
             <td>เวรเช้า</td>
-            <td *ngFor="let day of days; ">{{day}}</td>
+            <td *ngFor="let day of days; ">
+              <label for="" *ngIf="getIndexOfDay(day)">
+                <i class="fas fa-check"></i>
+              </label>
+          </td>
           </tr>
         </tbody>
       </table>

@@ -13,7 +13,8 @@ import { CommonService} from 'src/app/service/common.service';
 export class OtsummaryComponent implements OnInit {
 
   days = new Array();
-  data: any;
+  arr =  [1,5,9,12,15,16];
+  datas: [];
 
   constructor(
     private rout: ActivatedRoute,
@@ -21,13 +22,17 @@ export class OtsummaryComponent implements OnInit {
     private auth: AuthService,
   ) { }
 
-  ngOnInit(): void {
-    this.data = this.otservice.getOtnormalAll();
-    console.log("data", this.data);
+  async ngOnInit() {
+    this.datas = await  this.getOtnormalAll();
     this.days = this.getDayOfMonth(12, 2020);
+    console.log('datas', this.datas);
   }
 
-  
+  getOtnormalAll() {
+    return this.otservice.getOtnormalAll().toPromise().then(res => {
+      return res['rs'];
+    });
+  }
 
   getDayOfMonth(month: any, year: any)
   {
@@ -39,5 +44,10 @@ export class OtsummaryComponent implements OnInit {
     }
    
     return dayReturn;
+  }
+
+  getIndexOfDay(day: any)
+  {
+    return this.datas.findIndex(x => x['otdate'] === day) > -1 ? true : false;
   }
 }

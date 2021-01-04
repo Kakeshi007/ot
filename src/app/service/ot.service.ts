@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { map, catchError } from 'rxjs/operators';
+import { from, Observable, throwError } from 'rxjs';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -58,10 +61,8 @@ export class OtService {
     });
   }
 
-  getOtnormalAll()
-  {
-    return this.api.GetOtnarmalAll().toPromise().then((res: any)=>{
-      return res;
-    });
+  getOtnormalAll() {
+    return this.api.GetOtnarmalAll();
   }
+
 }
