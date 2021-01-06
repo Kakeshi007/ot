@@ -5,23 +5,45 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table class="table table-bordered">
+      <table width="100%" class="table-bordered">
         <thead>
           <tr>
-            <th style="width: 10px">#</th>
-            <th>Task</th>
-            <th *ngFor="let day of days; ">{{day}}</th>
+            <th rowspan="2">#</th>
+            <th rowspan="2" class="text-center">Task</th>
+            <th [attr.colspan]="colspan" class="text-center">วันที่</th>
+          </tr>
+          <tr>
+            
+            <th *ngFor="let day of days; " class="text-center">{{day}}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1.</td>
             <td>เวรเช้า</td>
-            <td *ngFor="let day of days; ">
-              <label for="" *ngIf="getIndexOfDay(day)">
-                <i class="fas fa-check"></i>
+            <td *ngFor="let morning of morningArr; " class="text-center align-middle" >
+              <label for="" *ngIf="morning.id">
+                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: morning.id}"><i class="fas fa-check"></i></a>
               </label>
-          </td>
+            </td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>เวรบ่าย</td>
+            <td *ngFor="let affternoon of affternoonArr; " class="text-center align-middle" >
+              <label for="" *ngIf="affternoon.id">
+                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: affternoon.id}"><i class="fas fa-check"></i></a>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td>เวรดึก</td>
+            <td *ngFor="let night of nightArr; " class="text-center align-middle" >
+              <label for="" *ngIf="night.id">
+                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: night.id}"><i class="fas fa-check"></i></a>
+              </label>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -39,9 +39,9 @@ export class ApiService {
       return this.http.get(url + '/otnormal/' + id);
     }
 
-    GetOtnarmalAll()
+    GetOtnarmalAll(payroll: string, year: number, month: number, cycle: number)
     {
-      return this.http.get(url + '/otnormal/');
+      return this.http.get(url + '/otnormal/'+payroll+'/'+year+'/'+month+'/'+cycle);
     }
 
   

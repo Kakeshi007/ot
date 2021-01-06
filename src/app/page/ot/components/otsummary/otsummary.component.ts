@@ -12,9 +12,15 @@ import { CommonService} from 'src/app/service/common.service';
 })
 export class OtsummaryComponent implements OnInit {
 
+  colspan: any;
   days = new Array();
-  arr =  [1,5,9,12,15,16];
-  datas: [];
+  morningData: [];
+  affternoonData: [];
+  nightData: [];
+  
+  morningArr = new Array();
+  affternoonArr = new Array();
+  nightArr = new Array();
 
   constructor(
     private rout: ActivatedRoute,
@@ -23,13 +29,21 @@ export class OtsummaryComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.datas = await  this.getOtnormalAll();
     this.days = this.getDayOfMonth(12, 2020);
-    console.log('datas', this.datas);
+    this.colspan = this.days.length;
+    // get data from service
+    this.morningData = await  this.getOtnormalAll('11956', 2021, 1, 1);
+    this.affternoonData = await this.getOtnormalAll('11956', 2021, 1, 2);
+    this.nightData = await this.getOtnormalAll('11956', 2021, 1, 3);
+    // tranfer data to array
+    this.morningArr = await this.getDataOfMonth(1, 2021, this.morningData);
+    this.affternoonArr = await this.getDataOfMonth(1, 2021, this.affternoonData);
+    this.nightArr = await this.getDataOfMonth(1, 2021, this.nightData);
+    //console.log('datas', this.datas);
   }
 
-  getOtnormalAll() {
-    return this.otservice.getOtnormalAll().toPromise().then(res => {
+  getOtnormalAll(payroll: string, year: number, month: number, cycle: number) {
+    return this.otservice.getOtnormalAll(payroll, year, month, cycle).toPromise().then(res => {
       return res['rs'];
     });
   }
@@ -46,8 +60,23 @@ export class OtsummaryComponent implements OnInit {
     return dayReturn;
   }
 
-  getIndexOfDay(day: any)
+  getDataOfMonth(month: any, year: any, data: any)
   {
-    return this.datas.findIndex(x => x['otdate'] === day) > -1 ? true : false;
+    let numberOfDay = new Date(year, month, 0).getDate();
+    let dataReturn = new Array();
+    for(let i = 1; i< numberOfDay; i++)
+    {
+      let id = this.getIdOtdate(i, data);
+      dataReturn.push({day:i, id:id});
+    }
+    return dataReturn;
+  }
+
+  getIdOtdate(day: any, data: any)
+  {
+    let index = data.findIndex(x => x['date'] === day);
+    let id = index > -1 ? data[index].id : '';
+    //console.log('id', id);
+    return id;
   }
 }

@@ -15,19 +15,25 @@
                 <!-- Date -->
                 <div class="form-group">
                   <label>Date:</label>
-                    <input class="form-control" matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="otdate" autocomplete="off" >
+                    <input class="form-control" matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="otdate" autocomplete="off" 
+                    [ngClass]="{'is-invalid': formGroupAdd.get('otdate').touched && formGroupAdd.get('otdate').invalid}" required>
                     <mat-datepicker #picker></mat-datepicker>
-                 
+                    <div class="invalid-feedback">
+                      <div>OT Date is required</div>
+                    </div>
                 </div>
                 <!--/ Date -->
                 <!---เวร--->
                 <div class="form-group">
                   <label for="exampleSelectRounded0">เวร</label>
-                  <select name="cycle" formControlName="cycle"  class="form-control" id="exampleSelectRounded0" >
+                  <select name="cycle" formControlName="cycle"  class="form-control" id="exampleSelectRounded0" [ngClass]="{'is-invalid': formGroupAdd.get('cycle').touched && formGroupAdd.get('cycle').invalid}" required>
                     <option value="1">เช้า</option>
                     <option value="2">บ่าย</option>
                     <option value="3">ดึก</option>
                   </select>
+                  <div class="invalid-feedback">
+                    <div>กรุณาเลือกเวรก่อน</div>
+                  </div>
                 </div>
                 <!---/เวร--->
                
@@ -35,7 +41,7 @@
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!formGroupAdd.valid">บันทึก</button>
               </div>
             </form>
           </div>

@@ -61,8 +61,8 @@ export class OtService {
     });
   }
 
-  getOtnormalAll() {
-    return this.api.GetOtnarmalAll();
+  getOtnormalAll(payroll: string, year: number, month: number, cycle: number) {
+    return this.api.GetOtnarmalAll(payroll, year, month, cycle);
   }
 
 }

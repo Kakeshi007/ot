@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { OtService } from 'src/app/service/ot.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CommonService} from 'src/app/service/common.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-updateotnormal',
@@ -30,8 +31,8 @@ export class UpdateotnormalComponent implements OnInit {
   ngOnInit(){
     this.formGroupAdd = new FormGroup({
       payroll: new FormControl(''),
-      otdate: new FormControl(''),
-      cycle: new FormControl(''),
+      otdate: new FormControl('', Validators.required),
+      cycle: new FormControl('', Validators.required),
     });
     this.rout.queryParams.subscribe(params => {
       this.id = params['id'];

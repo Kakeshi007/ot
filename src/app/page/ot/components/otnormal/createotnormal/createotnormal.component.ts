@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { OtService } from 'src/app/service/ot.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { CommonService} from 'src/app/service/common.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-createotnormal',
@@ -30,8 +31,8 @@ export class CreateotnormalComponent implements OnInit {
   ngOnInit(){
     this.formGroupAdd = new FormGroup({
       payroll: new FormControl(''),
-      otdate: new FormControl(''),
-      cycle: new FormControl(''),
+      otdate: new FormControl('', Validators.required),
+      cycle: new FormControl('', Validators.required),
     });
     this.payroll = this.auth.getPayroll();
     this.formGroupAdd.controls['payroll'].setValue(this.payroll);
@@ -51,7 +52,7 @@ export class CreateotnormalComponent implements OnInit {
         this.formGroupAdd.controls['cycle'].reset();
       }
       else{
-        Swal.fire('', 'บันทึกไม่สำเร็จ', 'error');
+        Swal.fire('', 'ข้อมูลซ้ำ', 'error');
         return;
       }
     }).catch(err => {
