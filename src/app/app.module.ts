@@ -26,6 +26,8 @@ import { DeleteotnormalComponent } from './page/ot/components/otnormal/deleteotn
 import { CreateworkComponent } from './page/ot/components/work/creatework/creatework.component';
 import { UpdateworkComponent } from './page/ot/components/work/updatework/updatework.component';
 import { OtsummaryComponent } from './page/ot/components/otsummary/otsummary.component';
+import { ViewotnormalComponent } from './page/ot/components/otnormal/viewotnormal/viewotnormal.component';
+import { CreatereferComponent } from './page/ot/components/refer/createrefer/createrefer.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { OtsummaryComponent } from './page/ot/components/otsummary/otsummary.com
     CreateworkComponent,
     UpdateworkComponent,
     OtsummaryComponent,
+    ViewotnormalComponent,
+    CreatereferComponent,
 
 
   ],

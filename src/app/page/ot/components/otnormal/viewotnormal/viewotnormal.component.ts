@@ -1,38 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { OtService } from 'src/app/service/ot.service';
-import { AuthService } from 'src/app/service/auth.service';
 import { CommonService} from 'src/app/service/common.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-deleteotnormal',
-  templateUrl: './deleteotnormal.component.html',
-  styleUrls: ['./deleteotnormal.component.css']
+  selector: 'app-viewotnormal',
+  templateUrl: './viewotnormal.component.html',
+  styleUrls: ['./viewotnormal.component.css']
 })
-export class DeleteotnormalComponent implements OnInit {
+export class ViewotnormalComponent implements OnInit {
 
-  private result: any;
-  payroll = '';
+  id: number;
+  payroll: number;
   otdate: any;
-  otForm: any;
-  formGroupAdd: FormGroup;
-  id: any;
+  cycle: string;
 
   constructor(
     private rout: ActivatedRoute,
     private otservice: OtService,
-    private auth: AuthService,
-    private common: CommonService
+    private common: CommonService,
+    private router: Router,
   ) { }
 
-  ngOnInit(){
+  ngOnInit(): void {
     this.rout.queryParams.subscribe(params => {
       this.id = params['id'];
     });
-    this.deleteOt(this.id);
+
+    this.getOtnormalById(this.id);
+  }
+
+  async getOtnormalById(id: any){
+    await this.otservice.getOtnormalById(id).then((res: any)=>{
+      console.log(res);
+      if(res.ok == true)
+      {
+        this.payroll =  res.rs[0].payroll;
+        
+        if(res.rs[0].cycle == 1){
+          this.cycle = "เช้า";
+        }
+        else if(res.rs[0].cycle == 2){
+          this.cycle = "เที่ยง";
+        }
+        else if(res.rs[0].cycle == 3){
+          this.cycle = "ดึก";
+        }
+
+        this.otdate =  this.common.convertDateThai(res.rs[0].otdate) ;
+      }else{
+        console.log("error");
+      }
+
+    });
   }
 
   async deleteOt(id)
@@ -43,15 +65,16 @@ export class DeleteotnormalComponent implements OnInit {
       showCancelButton: false,
       confirmButtonText: `Delete`,
       denyButtonText: `Don't Delete`,
-    }).then((result) => {
+    }).then((result) =>  {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
 
-        this.otservice.deleteOt(id).then((res: any) => {
+         this.otservice.deleteOt(id).then((res: any) => {
           console.log('res',res['ok']);
           if(res['ok'] == true)
           {
             Swal.fire('', 'ลบข้อมูลเรียบร้อย', 'success');
+            this.router.navigateByUrl('/ot/summary');
           }
           else{
             Swal.fire('', 'ลบไม่สำเร็จ', 'error');

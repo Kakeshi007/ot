@@ -22,6 +22,11 @@ export class OtsummaryComponent implements OnInit {
   affternoonArr = new Array();
   nightArr = new Array();
 
+  morningCount: number;
+  affternoonCount: number;
+  nightCount: number;
+  sumall: number;
+
   constructor(
     private rout: ActivatedRoute,
     private otservice: OtService,
@@ -39,7 +44,11 @@ export class OtsummaryComponent implements OnInit {
     this.morningArr = await this.getDataOfMonth(1, 2021, this.morningData);
     this.affternoonArr = await this.getDataOfMonth(1, 2021, this.affternoonData);
     this.nightArr = await this.getDataOfMonth(1, 2021, this.nightData);
-    //console.log('datas', this.datas);
+
+    this.morningCount =  this.morningData.length;
+    this.affternoonCount = this.affternoonData.length;
+    this.nightCount =  this.nightData.length;
+    this.sumall = this.morningCount + this.affternoonCount + this.nightCount;
   }
 
   getOtnormalAll(payroll: string, year: number, month: number, cycle: number) {

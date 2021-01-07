@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col col-md-6 col-lg-6">
+        <p>
+            <a class="btn btn-primary" [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: id}">Update</a>   
+            &nbsp;                                     
+            <a class="btn btn-danger"  (click)="deleteOt(id)">Delete</a>                                                                            
+        </p>
+        <table class="table table-striped table-bordered detail-view">
+            <tbody>
+                <tr>
+                    <th>เลขที่เงินเดือน</th>
+                    <td>{{payroll}}</td>
+                </tr>
+                <tr>
+                    <th>เวร</th>
+                    <td>{{cycle}}</td>
+                </tr>
+                <tr>
+                    <th>วันที่</th>
+                    <td>{{otdate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

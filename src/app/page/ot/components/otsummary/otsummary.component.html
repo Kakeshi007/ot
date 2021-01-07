@@ -5,12 +5,13 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table width="100%" class="table-bordered">
+      <table width="100%" border="1">
         <thead>
           <tr>
             <th rowspan="2">#</th>
             <th rowspan="2" class="text-center">Task</th>
             <th [attr.colspan]="colspan" class="text-center">วันที่</th>
+            <th rowspan="2" class="text-center">รวม</th>
           </tr>
           <tr>
             
@@ -19,31 +20,38 @@
         </thead>
         <tbody>
           <tr>
-            <td>1.</td>
+            <td class="text-center">1.</td>
             <td>เวรเช้า</td>
             <td *ngFor="let morning of morningArr; " class="text-center align-middle" >
               <label for="" *ngIf="morning.id">
-                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: morning.id}"><i class="fas fa-check"></i></a>
+                <a [routerLink]="['/ot/otnormal/view']" [queryParams]="{id: morning.id}"><i class="fas fa-check"></i></a>
               </label>
             </td>
+            <td class="text-right">{{morningCount}}</td>
           </tr>
           <tr>
-            <td>2.</td>
+            <td class="text-center">2.</td>
             <td>เวรบ่าย</td>
             <td *ngFor="let affternoon of affternoonArr; " class="text-center align-middle" >
               <label for="" *ngIf="affternoon.id">
-                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: affternoon.id}"><i class="fas fa-check"></i></a>
+                <a [routerLink]="['/ot/otnormal/view']" [queryParams]="{id: affternoon.id}"><i class="fas fa-check"></i></a>
               </label>
             </td>
+            <td class="text-right">{{affternoonCount}}</td>
           </tr>
           <tr>
-            <td>3.</td>
+            <td class="text-center">3.</td>
             <td>เวรดึก</td>
             <td *ngFor="let night of nightArr; " class="text-center align-middle" >
               <label for="" *ngIf="night.id">
-                <a [routerLink]="['/ot/otnormal/update']" [queryParams]="{id: night.id}"><i class="fas fa-check"></i></a>
+                <a [routerLink]="['/ot/otnormal/view']" [queryParams]="{id: night.id}"><i class="fas fa-check"></i></a>
               </label>
             </td>
+            <td class="text-right">{{nightCount}}</td>
+          </tr>
+          <tr>
+            <td [attr.colspan]="colspan+2" class="text-center">รวม</td>
+            <td class="text-right">{{sumall}}</td>
           </tr>
         </tbody>
       </table>

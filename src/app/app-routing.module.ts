@@ -4,12 +4,16 @@ import { UserGuard } from './guard/user.guard';
 import { LoginComponent } from './page/login/login.component';
 import { MainComponent } from './page/ot/layout/main/main.component';
 
+import { ViewotnormalComponent } from './page/ot/components/otnormal/viewotnormal/viewotnormal.component';
 import { CreateotnormalComponent } from './page/ot/components/otnormal/createotnormal/createotnormal.component';
 import { UpdateotnormalComponent } from './page/ot/components/otnormal/updateotnormal/updateotnormal.component';
 import { DeleteotnormalComponent } from './page/ot/components/otnormal/deleteotnormal/deleteotnormal.component';
+
 import { CreateworkComponent } from './page/ot/components/work/creatework/creatework.component';
 import { UpdateworkComponent } from './page/ot/components/work/updatework/updatework.component';
 import { OtsummaryComponent } from './page/ot/components/otsummary/otsummary.component';
+
+import { CreatereferComponent } from './page/ot/components/refer/createrefer/createrefer.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,9 +27,19 @@ const routes: Routes = [
           {path: 'create', component: CreateotnormalComponent},
           {path: 'update', component: UpdateotnormalComponent},
           {path: 'delete', component: DeleteotnormalComponent},
+          {path: 'view', component: ViewotnormalComponent},
           //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
         ],
       },
+      {path: 'refer', 
+      children: [
+        {path: 'create', component: CreatereferComponent},
+        {path: 'update', component: UpdateotnormalComponent},
+        {path: 'delete', component: DeleteotnormalComponent},
+        {path: 'view', component: ViewotnormalComponent},
+        //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
+      ],
+    },
       {path: 'work', 
         children: [
           {path: 'create', component: CreateworkComponent},

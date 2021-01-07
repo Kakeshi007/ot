@@ -49,7 +49,7 @@ export class CreateotnormalComponent implements OnInit {
       {
         Swal.fire('', 'บันทึกข้อมูลเรียบร้อย', 'success');
         this.formGroupAdd.controls['otdate'].reset();
-        this.formGroupAdd.controls['cycle'].reset();
+        //this.formGroupAdd.controls['cycle'].reset();
       }
       else{
         Swal.fire('', 'ข้อมูลซ้ำ', 'error');
