@@ -14,26 +14,16 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class OtService {
+export class ReferService {
 
   constructor(
     private http: HttpClient,
     private api: ApiService
   ) { }
 
-  // addOt(data){
-  //   this.serializedForm = JSON.stringify(data);
-  //   return this.http.post(this.url + '/ot/', this.serializedForm, httpOptions)
-  //   .subscribe(
-      
-  //     data => data,
-  //   //  error => console.error('couldn\'t post because', error)
-  //   )
-  //   ;
-  // }
-  addOt(data: any)
+  addRefer(data: any)
   {
-    return this.api.AddOt(data).toPromise().then((res: any) => {
+    return this.api.AddRefer(data).toPromise().then((res: any) => {
        return res;
      });
   }

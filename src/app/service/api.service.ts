@@ -44,5 +44,9 @@ export class ApiService {
       return this.http.get(url + '/otnormal/'+payroll+'/'+year+'/'+month+'/'+cycle);
     }
 
-  
+    // refer ---------------------------------------------
+    AddRefer(body: any)
+    {
+      return this.http.post(url + '/refer', body);
+    }
 }

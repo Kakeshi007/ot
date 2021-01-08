@@ -32,14 +32,14 @@ const routes: Routes = [
         ],
       },
       {path: 'refer', 
-      children: [
-        {path: 'create', component: CreatereferComponent},
-        {path: 'update', component: UpdateotnormalComponent},
-        {path: 'delete', component: DeleteotnormalComponent},
-        {path: 'view', component: ViewotnormalComponent},
-        //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
-      ],
-    },
+        children: [
+          {path: 'create', component: CreatereferComponent},
+          {path: 'update', component: UpdateotnormalComponent},
+          {path: 'delete', component: DeleteotnormalComponent},
+          {path: 'view', component: ViewotnormalComponent},
+          //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
+        ],
+      },
       {path: 'work', 
         children: [
           {path: 'create', component: CreateworkComponent},
