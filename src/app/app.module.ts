@@ -32,6 +32,7 @@ import { CreatereferComponent } from './page/ot/components/refer/createrefer/cre
 import { UpdatereferComponent } from './page/ot/components/refer/updaterefer/updaterefer.component';
 import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewrefer.component';
 
+import { NgSelect2Module } from 'select2';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewref
     MatNativeDateModule,
     MatRippleModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgSelect2Module
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'th-TH'},
