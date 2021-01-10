@@ -49,4 +49,18 @@ export class ApiService {
     {
       return this.http.post(url + '/refer', body);
     }
+
+    UpdateRefer(body: any, id: any)
+    {
+      return this.http.put(url + '/refer/'+ id, body);
+    }
+
+    GetReferById(id: any)
+    {
+      return this.http.get(url + '/refer/'+id);
+    }
+    DeleteRefer(id: any)
+    {
+      return this.http.delete(url + '/refer/'+ id);
+    }
 }

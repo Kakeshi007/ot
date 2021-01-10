@@ -1,0 +1,72 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="formGroupAdd" (ngSubmit)="updateRefer()" >
+                <input type="hidden"  name="payroll" formControlName="payroll" >
+                <div class="card-body">
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label>Date:</label>
+                        <input id="referdate"  class="form-control" matInput [matDatepicker]="pickerreferdate" 
+                        (click)="pickerreferdate.open()" formControlName="referdate" autocomplete="off" 
+                        [ngClass]="{'is-invalid': formGroupAdd.get('referdate').touched && formGroupAdd.get('referdate').invalid}" required >
+                        <mat-datepicker #pickerreferdate></mat-datepicker>
+                        <div class="invalid-feedback">
+                        <div>OT Date is required</div>
+                        </div>
+                    </div>
+                    <!--/ Date -->
+                    <!-- time -->
+                    <div class="form-group">
+                        <label>Time:</label>
+                        <input type="time" name="" id="" formControlName="refertime" class="form-control">
+                    </div>
+                    <!--/ time -->
+                    <!---reciveat--->
+                    <div class="form-group">
+                        <label for="reciveat">สถานที่ไปรับ</label>
+                        <input id="reciveat"  class="form-control" formControlName="reciveat">
+                    </div>
+                    <!---/reciveat--->
+                    <!---distance--->
+                    <div class="form-group">
+                        <label for="distance">ระยะทาง</label>
+                        <input id="distance"  class="form-control" formControlName="distance">
+                    </div>
+                    <!---/distance--->
+                    <!---hospitalbegin--->
+                    <div class="form-group">
+                        <label for="hospitalbegin">โรงพยาบาลต้นทาง</label>
+                        <input id="hospitalbegin"  class="form-control" formControlName="hospitalbegin">
+                    </div>
+                    <!---/hospitalbegin--->
+                    <!---hospitalend--->
+                    <div class="form-group">
+                        <label for="hospitalend">โรงพยาบาลต้นทาง</label>
+                        <input id="hospitalend"  class="form-control" formControlName="hospitalend">
+                    </div>
+                    <!---/hospitalend--->
+                
+               
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="!formGroupAdd.valid">บันทึก</button>
+                </div>
+            </form>
+          </div>
+          <!-- /.card -->
+    </div>
+</div>
+
+
+
+

@@ -14,6 +14,8 @@ import { UpdateworkComponent } from './page/ot/components/work/updatework/update
 import { OtsummaryComponent } from './page/ot/components/otsummary/otsummary.component';
 
 import { CreatereferComponent } from './page/ot/components/refer/createrefer/createrefer.component';
+import { UpdatereferComponent } from "./page/ot/components/refer/updaterefer/updaterefer.component";
+import { ViewreferComponent } from "./page/ot/components/refer/viewrefer/viewrefer.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,9 +36,9 @@ const routes: Routes = [
       {path: 'refer', 
         children: [
           {path: 'create', component: CreatereferComponent},
-          {path: 'update', component: UpdateotnormalComponent},
+          {path: 'update', component: UpdatereferComponent},
           {path: 'delete', component: DeleteotnormalComponent},
-          {path: 'view', component: ViewotnormalComponent},
+          {path: 'view', component: ViewreferComponent},
           //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
         ],
       },

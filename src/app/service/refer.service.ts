@@ -28,23 +28,23 @@ export class ReferService {
      });
   }
 
-  updateOt(data: any, id: any)
+  updateRefer(data: any, id: any)
   {
-    return this.api.UpdateOt(data, id).toPromise().then((res: any) => {
+    return this.api.UpdateRefer(data, id).toPromise().then((res: any) => {
        return res;
      });
   }
 
-  deleteOt(id: any)
+  deleteRefer(id: any)
   {
-    return this.api.DeleteOt(id).toPromise().then((res: any) => {
+    return this.api.DeleteRefer(id).toPromise().then((res: any) => {
       return res;
     });
   }
 
-  getOtnormalById(id: any)
+  getReferById(id: any)
   {
-    return this.api.GetOtnormalById(id).toPromise().then((res: any)=>{
+    return this.api.GetReferById(id).toPromise().then((res: any)=>{
       return res;
     });
   }

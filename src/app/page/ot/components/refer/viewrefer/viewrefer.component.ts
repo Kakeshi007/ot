@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute, ParamMap } from "@angular/router";
-import { OtService } from 'src/app/service/ot.service';
+import { ReferService } from 'src/app/service/refer.service';
 import { CommonService} from 'src/app/service/common.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-viewotnormal',
-  templateUrl: './viewotnormal.component.html',
-  styleUrls: ['./viewotnormal.component.css']
+  selector: 'app-viewrefer',
+  templateUrl: './viewrefer.component.html',
+  styleUrls: ['./viewrefer.component.css']
 })
-export class ViewotnormalComponent implements OnInit {
+export class ViewreferComponent implements OnInit {
 
   id: number;
   payroll: number;
-  otdate: any;
-  cycle: string;
+  referdate: any;
+  refertime: any;
+  reciveat: string;
+  distance: any;
+  hospitalbegin: any;
+  hospitalend: any;
+  rate: any;
 
   constructor(
     private rout: ActivatedRoute,
-    private otservice: OtService,
+    private referservice: ReferService,
     private common: CommonService,
     private router: Router,
   ) { }
@@ -33,23 +38,19 @@ export class ViewotnormalComponent implements OnInit {
   }
 
   async getOtnormalById(id: any){
-    await this.otservice.getOtnormalById(id).then((res: any)=>{
+    await this.referservice.getReferById(id).then((res: any)=>{
       console.log(res);
       if(res.ok == true)
       {
         this.payroll =  res.rs[0].payroll;
-        
-        if(res.rs[0].cycle == 1){
-          this.cycle = "เช้า";
-        }
-        else if(res.rs[0].cycle == 2){
-          this.cycle = "เที่ยง";
-        }
-        else if(res.rs[0].cycle == 3){
-          this.cycle = "ดึก";
-        }
-
-        this.otdate =  this.common.convertDateThai(res.rs[0].otdate) ;
+        this.referdate = this.common.convertDateThai(res.rs[0].referdate);
+        this.refertime = res.rs[0].refertime;
+        this.reciveat = res.rs[0].reciveat;
+        this.distance = res.rs[0].distance;
+        this.hospitalbegin = res.rs[0].hospitalbegin;
+        this.hospitalend = res.rs[0].hospitalend;
+        this.rate = res.rs[0].rate;
+        console.log('reciveat',this.reciveat);
       }else{
         console.log("error");
       }
@@ -57,7 +58,7 @@ export class ViewotnormalComponent implements OnInit {
     });
   }
 
-  async deleteOt(id)
+  async deleteRefer(id)
   {
     await Swal.fire({
       title: 'ต้องการลบรายการนี้หรือไม่?',
@@ -69,7 +70,7 @@ export class ViewotnormalComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
 
-         this.otservice.deleteOt(id).then((res: any) => {
+         this.referservice.deleteRefer(id).then((res: any) => {
           console.log('res',res['ok']);
           if(res['ok'] == true)
           {

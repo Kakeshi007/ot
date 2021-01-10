@@ -29,6 +29,8 @@ import { UpdateworkComponent } from './page/ot/components/work/updatework/update
 import { OtsummaryComponent } from './page/ot/components/otsummary/otsummary.component';
 import { ViewotnormalComponent } from './page/ot/components/otnormal/viewotnormal/viewotnormal.component';
 import { CreatereferComponent } from './page/ot/components/refer/createrefer/createrefer.component';
+import { UpdatereferComponent } from './page/ot/components/refer/updaterefer/updaterefer.component';
+import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewrefer.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { CreatereferComponent } from './page/ot/components/refer/createrefer/cre
     OtsummaryComponent,
     ViewotnormalComponent,
     CreatereferComponent,
+    UpdatereferComponent,
+    ViewreferComponent,
 
 
   ],
