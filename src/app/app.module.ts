@@ -32,7 +32,9 @@ import { CreatereferComponent } from './page/ot/components/refer/createrefer/cre
 import { UpdatereferComponent } from './page/ot/components/refer/updaterefer/updaterefer.component';
 import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewrefer.component';
 
-import { NgSelect2Module } from 'select2';
+import { NgSelect2Module } from 'ng-select2';
+
+
 
 @NgModule({
   declarations: [

@@ -53,9 +53,12 @@
                         <!-- <input id="hospitalend"  class="form-control" formControlName="hospitalend"> -->
 
                         <ng-select2 
+                            class="form-control"
                             formControlName="hospitalend"
-                            [data]="hospital"
-                            [placeholder]="'เลือกโรงพยาบาลปลายทาง...'">		
+                            options="hospital.id as hospital.hospital for hospital in hospitals | orderBy:'hospital'"
+                           
+                            [placeholder]="'กรุณาเลือกโรงพยาบาลปลายทาง...'">	
+                           
                         </ng-select2>
                     </div>
                     <!---/hospitalend--->
