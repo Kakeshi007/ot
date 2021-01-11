@@ -16,11 +16,11 @@ import { Validators } from '@angular/forms';
 })
 export class CreatereferComponent implements OnInit {
 
-  private result: any;
   payroll = '';
   otdate: any;
   otForm: any;
   formGroupAdd: FormGroup;
+  hospital: [];
 
   constructor(
     private rout: ActivatedRoute,
@@ -29,7 +29,7 @@ export class CreatereferComponent implements OnInit {
     private common: CommonService
   ) { }
 
-  ngOnInit(){
+  async ngOnInit(){
     this.formGroupAdd = new FormGroup({
       payroll: new FormControl(''),
       referdate: new FormControl('', Validators.required),
@@ -42,6 +42,7 @@ export class CreatereferComponent implements OnInit {
     });
     this.payroll = this.auth.getPayroll();
     this.formGroupAdd.controls['payroll'].setValue(this.payroll);
+    this.hospital =  await this.getHospital();
   }
 
   async addRefer() {
@@ -64,6 +65,13 @@ export class CreatereferComponent implements OnInit {
     }).catch(err => {
       console.log('add ot error! ', err.error);
       Swal.fire('', 'เกิดข้อผิดพลาด ไม่สามารถทำรายการได้. ' + err.error, 'error');
+    });
+  }
+
+  getHospital()
+  {
+    return this.referService.getHospital().toPromise().then(res => {
+      return res['rs'];
     });
   }
 

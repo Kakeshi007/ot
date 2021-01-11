@@ -50,7 +50,13 @@
                     <!---hospitalend--->
                     <div class="form-group">
                         <label for="hospitalend">โรงพยาบาลต้นทาง</label>
-                        <input id="hospitalend"  class="form-control" formControlName="hospitalend">
+                        <!-- <input id="hospitalend"  class="form-control" formControlName="hospitalend"> -->
+
+                        <ng-select2 
+                            formControlName="hospitalend"
+                            [data]="hospital"
+                            [placeholder]="'เลือกโรงพยาบาลปลายทาง...'">		
+                        </ng-select2>
                     </div>
                     <!---/hospitalend--->
                 

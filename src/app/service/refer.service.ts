@@ -53,4 +53,8 @@ export class ReferService {
     return this.api.GetOtnarmalAll(payroll, year, month, cycle);
   }
 
+  getHospital()
+  {
+    return this.api.GetHospital();
+  }
 }

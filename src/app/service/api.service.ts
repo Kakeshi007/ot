@@ -63,4 +63,8 @@ export class ApiService {
     {
       return this.http.delete(url + '/refer/'+ id);
     }
+    GetHospital()
+    {
+      return this.http.get(url + '/hospital/');
+    }
 }
