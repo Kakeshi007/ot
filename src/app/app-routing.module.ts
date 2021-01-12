@@ -17,11 +17,14 @@ import { CreatereferComponent } from './page/ot/components/refer/createrefer/cre
 import { UpdatereferComponent } from "./page/ot/components/refer/updaterefer/updaterefer.component";
 import { ViewreferComponent } from "./page/ot/components/refer/viewrefer/viewrefer.component";
 
+import { SelectedComponent } from "./selected/selected.component"
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   //{ path: '**', redirectTo: '/ot'},
-
+  {path: 'selected', component: SelectedComponent},
   {
+    
     path: 'ot', component: MainComponent, 
     children: [
       {path: 'otnormal', 

@@ -44,7 +44,16 @@
                     <!---hospitalbegin--->
                     <div class="form-group">
                         <label for="hospitalbegin">โรงพยาบาลต้นทาง</label>
-                        <input id="hospitalbegin"  class="form-control" formControlName="hospitalbegin">
+                        <!-- <input id="hospitalbegin"  class="form-control" formControlName="hospitalbegin"> -->
+                        <ng-multiselect-dropdown
+                            [placeholder]="'custom placeholder'"
+                            [data]="hospitals"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onItemSelectBegin($event)"
+                            formControlName="hospitalbegin"
+                           
+                        >
+                        </ng-multiselect-dropdown>
                     </div>
                     <!---/hospitalbegin--->
                     <!---hospitalend--->
@@ -52,14 +61,18 @@
                         <label for="hospitalend">โรงพยาบาลต้นทาง</label>
                         <!-- <input id="hospitalend"  class="form-control" formControlName="hospitalend"> -->
 
-                        <ng-select2 
-                            class="form-control"
+                        <ng-multiselect-dropdown
+                            name="hospitalend"
+                            [placeholder]="'custom placeholder'"
+                            [data]="hospitals"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onItemSelectEnd($event)"
                             formControlName="hospitalend"
-                            options="hospital.id as hospital.hospital for hospital in hospitals | orderBy:'hospital'"
-                           
-                            [placeholder]="'กรุณาเลือกโรงพยาบาลปลายทาง...'">	
-                           
-                        </ng-select2>
+                            
+                        >
+                        </ng-multiselect-dropdown>
+                        
+                        
                     </div>
                     <!---/hospitalend--->
                 

@@ -10,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +33,8 @@ import { UpdatereferComponent } from './page/ot/components/refer/updaterefer/upd
 import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewrefer.component';
 
 import { NgSelect2Module } from 'ng-select2';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SelectedComponent } from './selected/selected.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { NgSelect2Module } from 'ng-select2';
     CreatereferComponent,
     UpdatereferComponent,
     ViewreferComponent,
+    SelectedComponent,
 
 
   ],
@@ -69,7 +71,8 @@ import { NgSelect2Module } from 'ng-select2';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    NgSelect2Module
+    NgSelect2Module,
+    NgMultiSelectDropDownModule,
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'th-TH'},

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 import { ReferService } from 'src/app/service/refer.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -20,7 +21,20 @@ export class CreatereferComponent implements OnInit {
   otdate: any;
   otForm: any;
   formGroupAdd: FormGroup;
-  hospital: [];
+
+  hospitalBeginId: any;
+  hospitalendId: any;
+  hospitals: [];
+  selectedItems = [];
+  dropdownSettings:IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'hospital',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
 
   constructor(
     private rout: ActivatedRoute,
@@ -37,17 +51,21 @@ export class CreatereferComponent implements OnInit {
       reciveat: new FormControl(''),
       distance: new FormControl(''),
       hospitalbegin: new FormControl(''),
-      hospitalend: new FormControl(''),
+      hospitalend: new FormControl(),
       rate: new FormControl(''),
     });
     this.payroll = this.auth.getPayroll();
     this.formGroupAdd.controls['payroll'].setValue(this.payroll);
-    this.hospital =  await this.getHospital();
+    this.hospitals =  await this.getHospital();
+    console.log(this.hospitals);
+    
   }
 
   async addRefer() {
     let referdate = this.formGroupAdd.get('referdate').value;
     this.formGroupAdd.controls['referdate'].setValue(this.common.convertDate(referdate));
+    this.formGroupAdd.controls['hospitalbegin'].setValue(this.hospitalBeginId);
+    this.formGroupAdd.controls['hospitalend'].setValue(this.hospitalendId);
     this.otForm = this.formGroupAdd.getRawValue();
     
     await this.referService.addRefer(this.otForm).then((res: any) => {
@@ -75,4 +93,14 @@ export class CreatereferComponent implements OnInit {
     });
   }
 
+  onItemSelectEnd(item: any) {
+  
+    this.hospitalendId = item.id;
+    console.log('item',this.hospitalendId);
+  }
+
+  onItemSelectBegin(item: any)
+  {
+    this.hospitalBeginId = item.id;
+  }
 }
