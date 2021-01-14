@@ -8,7 +8,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form [formGroup]="formGroupAdd" (ngSubmit)="updateRefer()" >
+            <form [formGroup]="form" (ngSubmit)="updateRefer()">
                 <input type="hidden"  name="payroll" formControlName="payroll" >
                 <div class="card-body">
                     <!-- Date -->
@@ -16,7 +16,7 @@
                         <label>Date:</label>
                         <input id="referdate"  class="form-control" matInput [matDatepicker]="pickerreferdate" 
                         (click)="pickerreferdate.open()" formControlName="referdate" autocomplete="off" 
-                        [ngClass]="{'is-invalid': formGroupAdd.get('referdate').touched && formGroupAdd.get('referdate').invalid}" required >
+                        [ngClass]="{'is-invalid': form.get('referdate').touched && form.get('referdate').invalid}" required >
                         <mat-datepicker #pickerreferdate></mat-datepicker>
                         <div class="invalid-feedback">
                         <div>OT Date is required</div>
@@ -44,35 +44,36 @@
                     <!---hospitalbegin--->
                     <div class="form-group">
                         <label for="hospitalbegin">โรงพยาบาลต้นทาง</label>
-                        <!-- <input id="hospitalbegin"  class="form-control" formControlName="hospitalbegin"> -->
-                        <ng-multiselect-dropdown
-                            [placeholder]="'เลือกโรงพยาบาลต้นทาง'"
-                            [data]="hospitals"
-                            [settings]="dropdownSettings"
+                        
+                        <ng-multiselect-dropdown #multiSelect
+                            [(ngModel)]="hospitalBeginselectedItems"
+                            [placeholder]="'เลือกโรงพยาบาลต้นทาง'" 
+                            [data]="data" 
+                            formControlName="hospitalbegin" 
+                            [settings]="settings"
+                            [disabled]="false"
                             (onSelect)="onItemSelectBegin($event)"
-                            formControlName="hospitalbegin"
-                            [(ngModel)]="hospitalBeginSelected"
-                        >
+                            >
                         </ng-multiselect-dropdown>
                     </div>
                     <!---/hospitalbegin--->
                     <!---hospitalend--->
                     <div class="form-group">
-                        <label for="hospitalend">โรงพยาบาลต้นทาง</label>
+                        <label for="hospitalend">โรงพยาบาลปลายทาง</label>
                         <!-- <input id="hospitalend"  class="form-control" formControlName="hospitalend"> -->
 
-                        <ng-multiselect-dropdown
-                            name="hospitalend"
-                            [placeholder]="'เลือกโรงพยาบาลปลายทาง'"
-                            [data]="hospitals"
-                            [settings]="dropdownSettings"
+                      
+                        
+                        <ng-multiselect-dropdown #multiSelect
+                            [(ngModel)]="hospitalEndselectedItems"
+                            [placeholder]="'Select City'" 
+                            [data]="data" 
+                            formControlName="hospitalend" 
+                            [settings]="settings"
+                            [disabled]="false"
                             (onSelect)="onItemSelectEnd($event)"
-                            formControlName="hospitalend"
-                            
-                        >
-                        </ng-multiselect-dropdown>
-                        
-                        
+                            >
+                         </ng-multiselect-dropdown>
                     </div>
                     <!---/hospitalend--->
             
@@ -82,7 +83,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="!formGroupAdd.valid">บันทึก</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">บันทึก</button>
                 </div>
             </form>
           </div>

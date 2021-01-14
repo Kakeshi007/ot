@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormGroup, FormControl, Validator, Validators } from "@angular/forms";
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 import { ReferService } from 'src/app/service/refer.service';
-import { AuthService } from 'src/app/service/auth.service';
-import { CommonService} from 'src/app/service/common.service';
-import { Validators } from '@angular/forms';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
 
 @Component({
   selector: 'app-selected',
@@ -14,7 +12,13 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class SelectedComponent implements OnInit {
 
-  dropdownSettings:IDropdownSettings = {
+  @ViewChild("multiSelect") multiSelect;
+  public form: FormGroup;
+
+
+  public data = [];
+  public selectedItems = [{ id: 5, hospital: "โรงพยาบาลแม่เมาะ" }];
+  settings:IDropdownSettings = {
     singleSelection: true,
     idField: 'id',
     textField: 'hospital',
@@ -24,32 +28,17 @@ export class SelectedComponent implements OnInit {
     allowSearchFilter: true
   };
 
-  hospitals: [];
-  formGroup: FormGroup;
-  hospitalBeginSelected: [{id: 1, hospital: "โรงพยาบาลลำปาง" }];
-
   constructor(
     private referService: ReferService,
-    private auth: AuthService,
-    private common: CommonService
-  ) { }
+  )
+  {}
 
   async ngOnInit() {
-    this.formGroup = new FormGroup({
-      begin: new FormControl('')
-    });
-
-    this.hospitals =  await this.getHospital();
+    this.setForm();
+    this.data =  await this.getHospital();
+    // setting and support i18n
+    
    
-    this.formGroup.patchValue({
-      begin: this.hospitalBeginSelected,
-    });
-
-
-  }
-
-  get f() {
-    return this.formGroup.controls;
   }
 
   getHospital()
@@ -59,13 +48,16 @@ export class SelectedComponent implements OnInit {
     });
   }
 
-  seletedclick(){
-
+  public setForm() {
+    this.form = new FormGroup({
+      name: new FormControl("", Validators.required),
+      hospitalend: new FormControl()
+    });
   }
 
-  
-  onItemSelectBegin(item: any) {
-  
-  
-  }
+
+
+
+
+
 }
