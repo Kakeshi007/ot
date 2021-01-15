@@ -17,6 +17,10 @@ import { CreatereferComponent } from './page/ot/components/refer/createrefer/cre
 import { UpdatereferComponent } from "./page/ot/components/refer/updaterefer/updaterefer.component";
 import { ViewreferComponent } from "./page/ot/components/refer/viewrefer/viewrefer.component";
 
+import { CreateotbyhourComponent } from './page/ot/components/otbyhour/createotbyhour/createotbyhour.component';
+import { UpdateotbyhourComponent } from "./page/ot/components/otbyhour/updateotbyhour/updateotbyhour.component";
+import { ViewotbyhourComponent } from "./page/ot/components/otbyhour/viewotbyhour/viewotbyhour.component";
+
 import { SelectedComponent } from "./selected/selected.component"
 
 const routes: Routes = [
@@ -45,6 +49,14 @@ const routes: Routes = [
           //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
         ],
       },
+      {path: 'otbyhour', 
+      children: [
+        {path: 'create', component: CreateotbyhourComponent},
+        {path: 'update', component: UpdateotbyhourComponent},
+        {path: 'view', component: ViewotbyhourComponent},
+        //{path: '**', redirectTo: '/ot', pathMatch: 'full'}
+      ],
+    },
       {path: 'work', 
         children: [
           {path: 'create', component: CreateworkComponent},

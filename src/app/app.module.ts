@@ -35,6 +35,9 @@ import { ViewreferComponent } from './page/ot/components/refer/viewrefer/viewref
 import { NgSelect2Module } from 'ng-select2';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SelectedComponent } from './selected/selected.component';
+import { CreateotbyhourComponent } from './page/ot/components/otbyhour/createotbyhour/createotbyhour.component';
+import { UpdateotbyhourComponent } from './page/ot/components/otbyhour/updateotbyhour/updateotbyhour.component';
+import { ViewotbyhourComponent } from './page/ot/components/otbyhour/viewotbyhour/viewotbyhour.component';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import { SelectedComponent } from './selected/selected.component';
     UpdatereferComponent,
     ViewreferComponent,
     SelectedComponent,
+    CreateotbyhourComponent,
+    UpdateotbyhourComponent,
+    ViewotbyhourComponent,
 
 
   ],

@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
   
   onClickSubmit()
   {
+   
     this.auth.login(this.loginForm).then((res: any) => {
+     
       if(res.ok == true)
       {
         this.router.navigateByUrl(res.redirectUrl);
